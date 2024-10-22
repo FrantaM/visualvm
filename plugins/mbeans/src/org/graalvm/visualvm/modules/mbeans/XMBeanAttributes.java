@@ -711,6 +711,9 @@ class XMBeanAttributes extends XTable {
                 rowData[1] = Resources.getText("LBL_Unavailable"); // NOI18N
             } else if (viewableAttributes.containsKey(rowData[0])) {
                 rowData[1] = viewableAttributes.get(rowData[0]);
+                if (rowData[1].getClass() == String[].class) {
+                    rowData[1] = String.join(",", ((String[]) rowData[1]));
+                }
                 if (!attributesInfo[i].isWritable() ||
                     !Utils.isEditableType(attributesInfo[i].getType())) {
                     rowData[1] = getZoomedCell(mbean, (String) rowData[0], rowData[1]);
